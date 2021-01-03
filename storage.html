@@ -3,12 +3,20 @@
     <head>
         <title>To-Do List App</title>
         <script>
-            function addItem() {
-                // function code
+            function save() {
+                    var newItem = document.getElementById("box").value;
+                    localStorage.box = newItem;
+            }
+            function load() {
+                var savedDiv = document.getElementById('savedlist');
+                savedDiv.innerHTML = localStorage.box;
             }
         </script>
     </head>
     <body>
         <input type="text" id="box" value="Type here to add task">
+        <input type="button" id="save" value="Save" onclick="save();"/>
+        <input type="button" id="load" value="Load" onclick="load();">
+        Saved Items: <div id="savedlist"></div>
     </body>
 </html>
