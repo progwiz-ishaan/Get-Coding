@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To-Do List App</title>
+        <style>
+            body {
+                background-color: lightsalmon;
+            }
+            .title {
+                background-color: lightblue;
+                padding: 30px;
+                margin: 20px;
+                text-align: center;
+            }
+            .size {
+                font-size: 18pt;
+            }
+            input[type="button"] {
+                background-color: pink;
+            }
+        </style>
+        <script>
+            function addItem() {
+                var newItem = document.createElement("div");
+                newItem.innerHTML = document.getElementById("box").value;
+                newItem.onclick = removeItem;
+                document.getElementById("list").appendChild(newItem);
+                saveList();
+            }
+            function removeItem() {
+                document.getElementById("list").removeChild(this)
+                saveList();
+            }
+            function saveList() {
+                    localStorage.storedList = document.getElementById("box").value;
+            }
+            function loadList() {
+                document.getElementById("list").innerHTML = localStorage.storedList;
+                for(var i = 0; i < list.children.length; i++) {
+                    list.children[i].onclick = removeItem;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <p class="title size"><img src="volkovlogo.jpeg" style="text-align: left;"> House of Volkov</p>
+        <div class="title">
+        <p>Special Exhibition To-Do List</p>
+        <input type="text" id="box" value="Type here to add task">
+        <br>
+        <input type="button" value="Add Item" onclick="addItem();"/>
+        <br>
+        Saved Items: <div id="list"></div>
+        </div>
+        <script>
+            if(localStorage.storedList) {
+                loadList();
+            }
+        </script>
+    </body>
+</html>
